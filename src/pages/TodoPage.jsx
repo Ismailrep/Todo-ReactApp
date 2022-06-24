@@ -11,7 +11,7 @@ import {
   fetchTodoGlobal
 } from '../redux/actions/todo';
 
-const api = "https://todo-list-project.herokuapp.com/api" ;
+const api = "http://localhost:5000/todo" ;
 
 class TodoPage extends React.Component {
   state = {
