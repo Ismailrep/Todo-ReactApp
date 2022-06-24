@@ -20,7 +20,7 @@ class TodoPage extends React.Component {
   }
 
   fetchTodo = () => {
-    Axios.get(api)
+    Axios.get(`${api}`)
     .then((response) => {
       console.log(response.data)
       this.setState({ todoList: response.data });
@@ -65,7 +65,7 @@ class TodoPage extends React.Component {
   }
 
   addTodo = () =>{
-    Axios.post(api, { 
+    Axios.post(`${api}`, { 
       activity: this.state.inputTodo,
       isFinished: false,
     })
