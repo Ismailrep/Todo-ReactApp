@@ -1,0 +1,1 @@
+export const JSON_API = "https://todo-list-project.herokuapp.com/api/todo"
