@@ -10,9 +10,8 @@ import {
   incrementTodoCount,
   fetchTodoGlobal
 } from '../redux/actions/todo';
-import JSON_API from '../fake-api/const'
 
-
+const api = "http://localhost:5000/todo" ;
 
 class TodoPage extends React.Component {
   state = {
@@ -21,7 +20,7 @@ class TodoPage extends React.Component {
   }
 
   fetchTodo = () => {
-    Axios.get(`${JSON_API}`)
+    Axios.get(api)
     .then((response) => {
       console.log(response.data)
       this.setState({ todoList: response.data });
@@ -33,7 +32,7 @@ class TodoPage extends React.Component {
   }
 
   deleteTodo = (id) => {
-    Axios.delete(`${JSON_API}/${id}`)
+    Axios.delete(`${api}/${id}`)
     .then (() => {
       // alert("Berhasil delete");
       this.props.fetchTodoGlobal();
@@ -41,7 +40,7 @@ class TodoPage extends React.Component {
   }
 
   completeTodo = (id) =>{
-    Axios.patch(JSON_API + id, {
+    Axios.patch(`${api}/${id}`, {
       isFinished: true
     })
     .then(() =>{
@@ -66,7 +65,7 @@ class TodoPage extends React.Component {
   }
 
   addTodo = () =>{
-    Axios.post(`${JSON_API}`, { 
+    Axios.post(api, { 
       activity: this.state.inputTodo,
       isFinished: false,
     })
