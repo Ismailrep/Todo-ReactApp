@@ -1,5 +1,7 @@
 import Axios from 'axios';
 
+const api = "https://todo-list-project.herokuapp.com/api/todo" ;
+
 export const incrementTodoCount = () => {
     return{
       type: "INCREMENT_TODO_COUNT"
@@ -20,7 +22,7 @@ export const changeTodoCount = newCount => {
 }
 
 export const fetchTodo = () => {
-    Axios.get("http://localhost:2000/todo")
+    Axios.get(api)
     .then((response) => {
       console.log(response.data)
       this.setState({ todoList: response.data });
@@ -32,7 +34,7 @@ export const fetchTodo = () => {
   }
 
 export const deleteTodo = (id) => {
-    Axios.delete("http://localhost:2000/todo/" + id)
+    Axios.delete(`${api}/${id}`)
     .then (() => {
       alert("Berhasil delete");
       this.props.fetchTodoGlobal()
@@ -40,7 +42,7 @@ export const deleteTodo = (id) => {
   }
 
 export const completeTodo = (id) =>{
-    Axios.patch("http://localhost:2000/todo/" + id, {
+    Axios.patch(`${api}/${id}`, {
       isFinished: true
     })
     .then(() =>{
@@ -54,7 +56,7 @@ export const completeTodo = (id) =>{
 
 export const fetchTodoGlobal = () => {
     return(dispatch) =>{
-        Axios.get("http://localhost:2000/todo")
+        Axios.get(api)
         .then((response) => {
             console.log(response.data);
             dispatch({
